@@ -12,7 +12,7 @@ class ReadingThread(threading.Thread):
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.setblocking(0)
-        self.s.bind((ip, int(port)))
+        self.s.bind((ip, port))
         self.s.listen(10)
 
     def run(self):

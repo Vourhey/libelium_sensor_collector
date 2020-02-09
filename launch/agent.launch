@@ -3,7 +3,7 @@
     <arg name="port" default="8888" />
 
     <node ns="libelium_sensor_collector" name="collector" pkg="libelium_sensor_collector" type="collector_node" output="screen">
-        <param name="ip" value="$(arg port)" />
+        <param name="ip" value="$(arg ip)" />
         <param name="port" value="$(arg port)" />
     </node>
 </launch>
