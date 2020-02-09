@@ -13,7 +13,7 @@ class Collector:
 
         def callback(line: str):
             rospy.loginfo("Received: {}".format(line))
-        self.reading_th = ReadingThread(rospy.get_param("~port"), callback)
+        self.reading_th = ReadingThread(rospy.get_param("~ip"), rospy.get_param("~port"), callback)
         self.reading_th.start()
 
         rospy.loginfo("Collector node is lanched!")

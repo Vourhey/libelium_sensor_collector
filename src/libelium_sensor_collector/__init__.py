@@ -4,7 +4,7 @@ import socket
 
 
 class ReadingThread(threading.Thread):
-    def __init__(self, port: int, callback):
+    def __init__(self, ip: str, port: int, callback):
         super().__init__()
 
         self.buffer = bytearray()
@@ -12,7 +12,7 @@ class ReadingThread(threading.Thread):
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.setblocking(0)
-        self.s.bind(('', port))
+        self.s.bind((ip, int(port)))
         self.s.listen(10)
 
     def run(self):
