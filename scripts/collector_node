@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
+import json
 
 from libelium_sensor_collector import ReadingThread
 from std_msgs.msg import String
