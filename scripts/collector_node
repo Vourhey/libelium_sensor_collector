@@ -6,6 +6,7 @@ import json
 from libelium_sensor_collector import ReadingThread
 from std_msgs.msg import String
 from robonomics_msgs.msg import Result
+from ethereum_common.msg import Address
 from ipfs_common.ipfs_rosbag import IpfsRosBag
 
 
