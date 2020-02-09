@@ -5,7 +5,7 @@ import socket
 
 class ReadingThread(threading.Thread):
     def __init__(self, port: int, callback):
-        threading.Thread.__init__()
+        super().__init__()
 
         self.buffer = bytearray()
         self.cb = callback
