@@ -11,8 +11,9 @@ class ReadingThread(threading.Thread):
         self.cb = callback
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.setblocking(0)
         self.s.bind(('', port))
-        self.s.listen(1)
+        self.s.listen(10)
 
     def run(self):
         conn, addr = self.s.accept()
