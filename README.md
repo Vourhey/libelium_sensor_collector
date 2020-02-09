@@ -1,6 +1,8 @@
 # Libelium Sensor Collector
 
-The agent listens to a TCP socket, receives data and transfers it to Robonomics Network as a [Result](https://wiki.robonomics.network/agent_development/market_messages/#result) message
+The agent listens to a TCP socket, receives data and transfers it to Robonomics Network as a [Result](https://wiki.robonomics.network/agent_development/market_messages/#result) message.
+
+Check out the [DApp](https://dapp.robonomics.network/#/sensors/airalab/QmbQT8cj9TJKfYVaidfShnrEX1g14yTC9bdG1XbcRX73wY/0xFfd95814A77884AfF78B7e6eAFCEbB81c3C2D765/) to see data
 
 The sensor set includes:
 
