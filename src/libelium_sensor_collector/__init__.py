@@ -54,7 +54,7 @@ class ReadingThread(threading.Thread):
                         index = self.buffer.find(b'\n')
                         line = self.buffer[:index]
                         self.cb(line.decode("utf-8"))
-                        self.buffer = self.buffer[index:]
+                        self.buffer = self.buffer[index+:]
 
                     if resource not in self.OUTPUTS:
                         self.OUTPUTS.append(resource)
