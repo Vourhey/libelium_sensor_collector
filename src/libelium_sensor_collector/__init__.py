@@ -53,8 +53,8 @@ class ReadingThread(threading.Thread):
                     if b'\n' in self.buffer:
                         index = self.buffer.find(b'\n')
                         line = self.buffer[:index]
-                        self.cb(line.decode("utf-8"))
-                        self.buffer = self.buffer[index+:]
+                        self.cb(line.decode("utf-8", "backslashreplace"))
+                        self.buffer = self.buffer[index+1:]
 
                     if resource not in self.OUTPUTS:
                         self.OUTPUTS.append(resource)
