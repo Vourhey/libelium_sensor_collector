@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import rospy
-import json
 
 from libelium_sensor_collector import ReadingThread
 from std_msgs.msg import String
@@ -21,16 +20,8 @@ class Collector:
         def callback(line: str):
             rospy.loginfo("Received: {}".format(line))
 
-            splitted = line.split("}}")
-            data = splitted[0] + "}}"
-            signature = splitted[1]
-
-            j = {
-                    "data": data,
-                    "signature": signature
-                    }
             topics = {
-                    "/data": [ String(json.dumps(j)) ]
+                    "/data": [ String(line) ]
                     }
             bag = IpfsRosBag(messages=topics)
 
