@@ -50,11 +50,12 @@ class ReadingThread(threading.Thread):
                     rospy.loginfo("getting data: {data}".format(data=str(data)))
                     self.buffer.extend(data)
 
-                    if b'\n' in self.buffer:
-                        index = self.buffer.find(b'\n')
-                        line = self.buffer[:index]
-                        self.cb(line.decode("utf-8", "backslashreplace"))
-                        self.buffer = self.buffer[index+1:]
+                    while len(self.buffer) > 1:
+                        if b'\n' in self.buffer:
+                            index = self.buffer.find(b'\n')
+                            line = self.buffer[:index]
+                            self.cb(line.decode("utf-8", "backslashreplace"))
+                            self.buffer = self.buffer[index+1:]
 
                     if resource not in self.OUTPUTS:
                         self.OUTPUTS.append(resource)

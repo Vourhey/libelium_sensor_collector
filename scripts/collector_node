@@ -3,6 +3,9 @@
 import rospy
 
 from libelium_sensor_collector import ReadingThread
+from std_msgs.msg import String
+from robonomics_msgs.msg import Result
+from ipfs_common.ipfs_rosbag import IpfsRosBag
 
 
 class Collector:
@@ -11,8 +14,32 @@ class Collector:
         rospy.init_node("collector")
         rospy.loginfo("Launching collector node...")
 
+        self.result_publish = rospy.Publisher('/liability/infochan/eth/signing/result', Result, queue_size=128)
+
         def callback(line: str):
             rospy.loginfo("Received: {}".format(line))
+
+            splitted = line.split("}}")
+            data = splitted[0] + "}}"
+            signature = splitted[1]
+
+            j = {
+                    "data": data,
+                    "signature": signature
+                    }
+            topics = {
+                    "/data": [ String(json.dumps(j)) ]
+                    }
+            bag = IpfsRosBag(messages=topics)
+
+            res = Result()
+            res.liability = Address("0x0000000000000000000000000000000000000000")
+            res.result = bag.multihash
+            res.success = True
+
+            self.result_publish.publish(res)
+
+
         self.reading_th = ReadingThread(rospy.get_param("~ip"), rospy.get_param("~port"), callback)
         self.reading_th.start()
 
